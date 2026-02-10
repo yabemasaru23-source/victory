@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- Google Analytics (GA4) 設定 -->
+    <!-- 以下の G-XXXXXXXXXX をあなたの測定IDに書き換えてください -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>株式会社常笑 | 自分流元祖 × 人生デザイン</title>
+    
+    <!-- 最強のSEO対策メタタグ -->
+    <title>株式会社常笑 | 世阿弥「花の理論」× 人生デザイン | 求人・人財派遣</title>
+    <meta name="description" content="【新宿区の人財派遣会社】株式会社常笑は、世阿弥の「花の理論」をベースに、人生の各ステージで輝く働き方を提案します。LINEを活用したフラットな組織で、あなたの「自分流元祖」を共に創り上げるパートナーです。">
+    <meta name="keywords" content="株式会社常笑, 常笑, 人財派遣, 求人, 世阿弥, 花の理論, 自分流元祖, LINE, コミュニティ, 新宿">
+    <meta name="author" content="株式会社 常笑">
+    
+    <!-- OGP設定 -->
+    <meta property="og:title" content="株式会社常笑 | 人生とは何か？自分流元祖を発見する旅へ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yabemasaru23-source.github.io/victory/">
+    <meta property="og:image" content="https://yabemasaru23-source.github.io/victory/rogo.png">
+    <meta property="og:description" content="常笑ができた理由は、LINEでみんなで作る新しい場所だから。人生が輝く「花の理論」で共に成長しませんか？">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans JP', sans-serif;
             letter-spacing: 0.05em;
-            color: #334155; /* 基本の文字色を少し濃いスレートグレーに設定 */
+            color: #334155;
         }
+        
         .hero-gradient {
-            /* 日本人の若者やチームの結束を感じる画像 */
-            background: linear-gradient(rgba(10, 30, 100, 0.75), rgba(10, 30, 100, 0.6)), url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=2000');
+            background: linear-gradient(rgba(10, 30, 80, 0.7), rgba(10, 30, 80, 0.5)), url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=2000');
             background-size: cover;
             background-position: center;
+        }
+        .flower-gradient {
+            background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
         }
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
@@ -29,43 +55,89 @@
             display: inline-block;
             animation: smile 3s infinite ease-in-out;
         }
-        .recruit-bg {
-            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
-        }
         .card-hover:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        .joy-card {
+        .recruit-button {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             transition: all 0.3s ease;
         }
-        .joy-card:hover {
-            transform: scale(1.02);
+        .recruit-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
-        .text-balance {
-            text-wrap: balance;
+        .zeami-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        /* LINEボタン用 */
+        .line-button {
+            background-color: #06C755;
+            transition: all 0.3s ease;
+        }
+        .line-button:hover {
+            background-color: #05b34c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(6, 199, 85, 0.4);
+        }
+        /* 遊びコンテンツ用 */
+        .job-btn {
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .job-btn.selected {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        /* 特別な選択肢用 */
+        .job-btn.special {
+            border-color: #a855f7;
+            color: #7e22ce;
+            font-weight: 900;
+        }
+        .job-btn.special.selected {
+            background-color: #a855f7;
+            color: white;
+            border-color: #a855f7;
+        }
+
+        .result-box {
+            display: none;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .result-box.show {
+            display: block;
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body class="bg-white text-slate-800 scroll-smooth">
 
     <!-- ナビゲーション -->
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-blue-100">
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex items-center">
-                    <a href="#" class="flex flex-col leading-none group">
-                        <span class="text-2xl font-black text-blue-700 tracking-tighter logo-smile">株式会社 常笑</span>
+                    <a href="#" class="flex items-center group">
+                        <img src="rogo.png" alt="株式会社常笑 ロゴ" class="h-12 w-auto object-contain transition transform group-hover:scale-105">
                     </a>
                 </div>
-                <div class="hidden md:flex space-x-6 lg:space-x-8 font-bold items-center text-sm lg:text-base text-slate-700">
-                    <a href="#about" class="hover:text-blue-600 transition">自分流元祖とは</a>
-                    <a href="#philosophy" class="hover:text-blue-600 transition">7つの視点</a>
-                    <a href="#joy" class="hover:text-blue-600 transition text-blue-600">働く喜び</a>
-                    <a href="#miracle" class="hover:text-blue-600 transition">出会いの奇跡</a>
+                <div class="hidden lg:flex space-x-5 xl:space-x-7 font-bold items-center text-sm text-slate-700">
+                    <a href="#about" class="hover:text-blue-600 transition">自分流元祖</a>
+                    <a href="#origin" class="hover:text-green-600 transition">常笑の原点</a>
+                    <a href="#dream-check" class="hover:text-yellow-600 transition">ドリーム診断</a>
+                    <a href="#zeami" class="hover:text-blue-600 transition text-blue-800">花の理論</a>
                     <a href="#service" class="hover:text-blue-600 transition">事業内容</a>
-                    <a href="#recruit" class="hover:text-blue-600 transition font-black text-blue-600 underline decoration-2 underline-offset-4">エントリー</a>
-                    <a href="#contact" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-200">相談する</a>
+                    <a href="#recruit" class="px-5 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-md">求人エントリー</a>
+                    <a href="#contact" class="px-5 py-2 border-2 border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition">相談する</a>
                 </div>
             </div>
         </div>
@@ -73,21 +145,18 @@
 
     <!-- メインヒーロー -->
     <section class="hero-gradient h-screen flex items-center justify-center text-white relative">
-        <div class="text-center px-4 max-w-5xl mx-auto">
+        <div class="text-center px-4 max-w-6xl mx-auto">
+            <p class="text-lg md:text-2xl font-bold mb-4 tracking-[0.2em] text-blue-200">人生とは何か？その答えを探す旅へ。</p>
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight tracking-tighter text-shadow">
                 仕事を変えろ。<br>人生で笑え。
             </h1>
-            <p class="text-lg md:text-2xl font-bold max-w-4xl mx-auto leading-relaxed text-shadow opacity-100 text-balance mb-10">
-                私たちはただ仕事を紹介する派遣会社ではありません。<br class="hidden md:block">
-                「自分流元祖」を構築し、あなたの人生そのものを<br class="hidden md:block">
+            <p class="text-xl md:text-3xl font-bold max-w-4xl mx-auto leading-relaxed text-shadow opacity-100 mb-10">
+                「自分流元祖」を構築し、<br class="md:hidden">あなたの人生そのものを<br>
                 最高に面白くする「常勝軍団」を作る会社です。
             </p>
             <div class="mt-8 flex flex-col md:flex-row gap-6 justify-center">
-                <a href="#recruit" class="inline-block bg-white text-blue-700 font-black px-12 py-5 rounded-full text-xl shadow-2xl hover:scale-105 transition-transform border-2 border-white">
-                    スタッフ登録へ
-                </a>
-                <a href="#about" class="inline-block bg-blue-700/80 backdrop-blur-md border-2 border-white/80 text-white font-bold px-12 py-5 rounded-full text-xl hover:bg-blue-700 transition-colors shadow-lg">
-                    自分流元祖を知る
+                <a href="#zeami" class="inline-block bg-white text-blue-900 font-black px-12 py-5 rounded-full text-xl shadow-2xl hover:scale-105 transition-transform border-4 border-blue-600">
+                    花の理論とは？
                 </a>
             </div>
         </div>
@@ -96,18 +165,49 @@
         </div>
     </section>
 
-    <!-- 私たちについて (自分流元祖とは) -->
+    <!-- 募集メッセージ -->
+    <section class="py-20 bg-slate-50 relative">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-10 leading-tight">
+                株式会社常笑は<br>
+                <span class="text-blue-600">人財派遣会社</span>です。<br>
+                一緒に働く人を<br class="md:hidden">募集しております。
+            </h2>
+            <div class="space-y-6 text-lg md:text-xl text-slate-700 font-medium leading-loose">
+                <p>
+                    私たちはただ労働力を提供するだけの会社ではありません。<br>
+                    働く人の「個性」と「可能性」を最大限に引き出し、<br>
+                    共に人生の<span class="text-blue-600 font-bold">「まことの花」</span>を咲かせる場所です。
+                </p>
+                <p class="text-2xl font-bold text-slate-900 pt-4">
+                    ぜひ！この考え方に共鳴した方は<br>
+                    お問い合わせ・相談ください！
+                </p>
+            </div>
+            
+            <div class="mt-12 flex flex-col md:flex-row justify-center gap-6">
+                <a href="#recruit" class="recruit-button text-white font-black px-12 py-5 rounded-2xl text-xl shadow-xl flex items-center justify-center gap-3">
+                    一緒に働きたい
+                </a>
+                <a href="#contact" class="bg-white border-4 border-blue-600 text-blue-600 font-black px-12 py-5 rounded-2xl text-xl shadow-xl hover:bg-blue-50 transition flex items-center justify-center gap-3">
+                    相談してみる
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 自分流元祖とは -->
     <section id="about" class="py-24 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-1/2">
-                    <span class="text-blue-600 font-black tracking-widest uppercase mb-4 block text-sm">Our Concept</span>
-                    <h2 class="text-3xl md:text-5xl font-black mb-10 relative inline-block text-slate-900 leading-tight">
+                    <span class="text-blue-600 font-black tracking-widest uppercase mb-4 block text-sm">Philosophy</span>
+                    <h2 class="text-4xl md:text-5xl font-black mb-10 relative inline-block text-slate-900 leading-tight">
                         自分流元祖。<br>
                         誰かの正解じゃなく、<br>自分の答えを。
-                        <span class="absolute -bottom-4 left-0 w-20 h-2 bg-blue-600"></span>
+                        <span class="absolute -bottom-4 left-0 w-24 h-2 bg-blue-600"></span>
                     </h2>
-                    <div class="mb-10 p-6 bg-blue-50 border-l-8 border-blue-600 rounded-r-xl">
+                    <div class="mb-10 p-8 bg-blue-50 border-l-8 border-blue-600 rounded-r-xl shadow-sm">
                         <p class="text-xl leading-relaxed text-blue-900 font-bold">
                             「自分流元祖」とは、<br>
                             自分だけの“働く哲学”を築く、<br>オリジナルの出発点。
@@ -115,268 +215,314 @@
                     </div>
                     <div class="text-lg leading-loose text-slate-700 mb-12 space-y-6">
                         <p>
-                            他人のマネじゃない、自分らしさの源（ルーツ）を見つけるためのキーワード。<br>
-                            それは、「自分らしい働き方の原点」や「自分だけの価値観のはじまり」です。
+                            世の中には「正解」とされる生き方が溢れています。<br>
+                            しかし、他人のマネをして咲かせた花は、いつか色褪せてしまいます。
                         </p>
                         <p>
-                            株式会社常笑は、派遣という多様な経験を通じて、あなたが「自分流元祖」を構築する場所。<br>
-                            ここから、あなただけの最強のストーリーが始まります。
-                        </p>
-                    </div>
-                    
-                    <div class="p-10 bg-blue-700 text-white rounded-[2rem] shadow-xl transform hover:scale-[1.01] transition-transform">
-                        <h3 class="text-2xl font-black mb-6 border-b border-white/30 pb-4 italic">目指せ、自分流の常勝軍団！</h3>
-                        <p class="text-lg leading-relaxed font-medium opacity-95">
-                            誰かの真似ではなく、自分のスタイルで勝つ。<br>
-                            個性がぶつかり合い、笑顔で高め合う。<br>
-                            そんな「常に勝ち、常に笑う」チームを、共に作りましょう。
+                            自分らしさの源（ルーツ）を見つけ、<br>
+                            あなただけの種を蒔き、あなただけの花を咲かせる。<br>
+                            株式会社常笑は、派遣という多様な経験を通じて、<br>
+                            その「自分流元祖」を構築する場所です。
                         </p>
                     </div>
                 </div>
                 <div class="lg:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=1000" alt="自信に満ちた日本人ビジネスマン" class="rounded-[3rem] shadow-2xl mb-12 hover:shadow-blue-200 transition-shadow w-full">
+                    <img src="01.jpg" alt="自分らしく働く人々" class="rounded-[3rem] shadow-2xl mb-12 hover:shadow-blue-200 transition-shadow w-full object-cover h-[500px]">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 7つの教え -->
-    <section id="philosophy" class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-20">
-                <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter text-slate-900">7 Principles for "Ganso"</h2>
-                <p class="text-2xl text-blue-700 font-black mb-4">自分流元祖：しごとの原点を探る7つの視点</p>
-                <p class="mt-4 text-slate-600 font-medium text-lg">この7つの視点を持つことで、あなたの「自分流」はより強固なものになります。</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Point 01 -->
-                <div class="bg-white rounded-3xl shadow-md border border-slate-100 transition-all card-hover overflow-hidden group h-full">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&q=80&w=800" alt="健康的なライフスタイル" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-8 relative">
-                        <div class="absolute -top-6 right-6 bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full font-black text-xl shadow-lg border-4 border-white">01</div>
-                        <h4 class="text-xl font-black mb-4 text-slate-800">健康管理力</h4>
-                        <p class="text-slate-600 text-base leading-relaxed">
-                            良い仕事は、良い身体から。<br>
-                            自身のコンディションを整えるプロフェッショナルへ。長く安定して働ける土台を作ります。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Point 02 -->
-                <div class="bg-white rounded-3xl shadow-md border border-slate-100 transition-all card-hover overflow-hidden group h-full">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=800" alt="価値の創造と成長" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-8 relative">
-                        <div class="absolute -top-6 right-6 bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full font-black text-xl shadow-lg border-4 border-white">02</div>
-                        <h4 class="text-xl font-black mb-4 text-slate-800">お金を“価値”に変える力</h4>
-                        <p class="text-slate-600 text-base leading-relaxed">
-                            稼いだお金をどう使うか？<br>
-                            「経験」や「学び」に投資する賢さを身につけ、市場価値の高い人材へと成長します。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Point 03 -->
-                <div class="bg-white rounded-3xl shadow-md border border-slate-100 transition-all card-hover overflow-hidden group h-full">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=800" alt="シンプルな暮らし" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-8 relative">
-                        <div class="absolute -top-6 right-6 bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full font-black text-xl shadow-lg border-4 border-white">03</div>
-                        <h4 class="text-xl font-black mb-4 text-slate-800">身軽な思考力</h4>
-                        <p class="text-slate-600 text-base leading-relaxed">
-                            こだわりや執着を捨て、変化に柔軟に対応する。<br>
-                            どんな職場環境でも即戦力として適応できる「軽やかさ」を養います。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Point 04 -->
-                <div class="bg-white rounded-3xl shadow-md border border-slate-100 transition-all card-hover overflow-hidden group h-full">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=800" alt="信頼できる仲間との絆" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-8 relative">
-                        <div class="absolute -top-6 right-6 bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full font-black text-xl shadow-lg border-4 border-white">04</div>
-                        <h4 class="text-xl font-black mb-4 text-slate-800">人間関係構築力</h4>
-                        <p class="text-slate-600 text-base leading-relaxed">
-                            表面的な付き合いではなく、心を通わせる。<br>
-                            派遣先で信頼され、「あなたにお願いしたい」と言われる関係性を築きます。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Point 05 -->
-                <div class="bg-white rounded-3xl shadow-md border border-slate-100 transition-all card-hover overflow-hidden group h-full">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&q=80&w=800" alt="自分を見つめ直す時間" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-8 relative">
-                        <div class="absolute -top-6 right-6 bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full font-black text-xl shadow-lg border-4 border-white">05</div>
-                        <h4 class="text-xl font-black mb-4 text-slate-800">立ち止まる勇気</h4>
-                        <p class="text-slate-600 text-base leading-relaxed">
-                            忙しさの中で自分を見失わない。<br>
-                            定期的にキャリアを見つめ直し、正しい方向へ修正する「内省」の習慣を作ります。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Point 06 -->
-                <div class="bg-white rounded-3xl shadow-md border border-slate-100 transition-all card-hover overflow-hidden group h-full">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1519834785169-98be25ec3f84?auto=format&fit=crop&q=80&w=800" alt="新たな一歩を踏み出す" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-8 relative">
-                        <div class="absolute -top-6 right-6 bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full font-black text-xl shadow-lg border-4 border-white">06</div>
-                        <h4 class="text-xl font-black mb-4 text-slate-800">失敗を糧にする力</h4>
-                        <p class="text-slate-600 text-base leading-relaxed">
-                            未経験の仕事でも恐れない。<br>
-                            失敗を「成長のデータ」と捉え、ポジティブに次の一歩を踏み出す強さを育てます。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Point 07 -->
-                <div class="bg-white rounded-3xl shadow-md border border-slate-100 transition-all card-hover md:col-span-2 overflow-hidden flex flex-col md:flex-row group">
-                    <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800" alt="自分らしく生きる日本人女性" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-8 md:w-1/2 flex flex-col justify-center relative">
-                        <div class="absolute -top-6 right-6 md:top-auto md:bottom-6 md:right-6 bg-blue-600 text-white w-16 h-16 flex items-center justify-center rounded-full font-black text-2xl shadow-lg border-4 border-white z-10">07</div>
-                        <h4 class="text-2xl font-black mb-4 text-blue-600 underline decoration-4 underline-offset-8">自分らしく生きる</h4>
-                        <p class="text-slate-700 font-bold leading-relaxed mt-4 text-lg">
-                            他人と比べず、自分の価値観で働く。<br>
-                            人生の主役は常に「自分」です。<br>
-                            あなたの個性が最大限に活きる職場を、常笑は全力でマッチングします。
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-20">
-                 <p class="text-2xl font-bold mb-8 text-slate-800">この哲学に共感してくれる仲間を待っています。</p>
-                 <a href="#recruit" class="inline-flex items-center gap-2 bg-blue-600 text-white font-black px-12 py-5 rounded-full text-xl shadow-lg hover:bg-blue-700 hover:shadow-2xl transition-all transform hover:-translate-y-1">
-                    常笑で一緒に働く
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 働く喜びの航海図 -->
-    <section id="joy" class="py-24 bg-gradient-to-b from-white to-blue-50">
-        <div class="max-w-7xl mx-auto px-4">
+    <!-- 常笑ができた理由 & LINE -->
+    <section id="origin" class="py-24 bg-green-50 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-black mb-6 text-slate-900">「働く喜び」の航海図</h2>
-                <p class="text-xl text-slate-600 font-bold leading-relaxed">
-                    全世代、それぞれのステージに輝くストーリー。<br>
-                    あなただけの「働く意味」が見つかります。
+                <span class="text-green-600 font-black tracking-widest uppercase mb-4 block text-sm">Our Origin & Future</span>
+                <h2 class="text-3xl md:text-5xl font-black mb-6 text-slate-900 leading-tight">
+                    手っ取り早く<span class="text-green-600">LINE</span>に参加して<br>
+                    常笑ができた理由を見る！
+                </h2>
+                <p class="text-xl text-slate-700 font-bold leading-relaxed max-w-3xl mx-auto">
+                    ここから、5日間の常笑ストーリーが開始されます。<br>
+                    それは、みんなで作る新しい場所の物語。
                 </p>
             </div>
 
-            <!-- LIFE VOYAGE（人生の航海図） -->
-            <div class="max-w-4xl mx-auto mb-20 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white transform hover:scale-[1.01] transition-transform">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=1200" alt="人生の航海図（地図とコンパス）" class="w-full h-80 object-cover">
-                    <div class="absolute inset-0 bg-blue-900/30 flex items-center justify-center">
-                        <span class="text-white font-black text-3xl md:text-5xl tracking-widest text-shadow border-4 border-white px-8 py-4 bg-white/10 backdrop-blur-sm">LIFE VOYAGE</span>
+            <div class="flex flex-col md:flex-row items-center gap-12 bg-white rounded-[3rem] p-8 md:p-12 shadow-xl border border-green-100">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-black mb-6 text-slate-800 border-l-8 border-green-500 pl-4">そして、経営側に来てほしい。</h3>
+                    <div class="space-y-6 text-lg leading-loose text-slate-600">
+                        <p>
+                            ただ働くだけじゃない。<br>
+                            LINEを通じて常笑の原点を知り、5日間のストーリーを体感してください。<br>
+                            その後、全体LINEに参加することで、あなたはもう「常勝軍団」の一員への切符を手にしています。
+                        </p>
+                        <p class="font-bold text-slate-800">
+                            私たちは本気です。<br>
+                            将来、一緒に経営側として活躍してくれる仲間を待っています。<br>
+                            あなたが人生で笑える仕事が、ここで必ず見つかります。
+                        </p>
+                    </div>
+                    <div class="mt-10">
+                        <a href="https://line.me/R/ti/p/@YOUR_LINE_ID" target="_blank" class="line-button text-white font-black px-10 py-5 rounded-full text-xl shadow-lg inline-flex items-center gap-3">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.57 2 10c0 2.37 1.25 4.54 3.32 6.09-.37 1.34-1.32 3.1-1.35 3.15-.07.13.04.28.18.25.75-.15 3.36-.72 4.63-1.32.7.19 1.44.29 2.22.29 5.52 0 10-3.57 10-8s-4.48-8-10-8zm0 14c-4.41 0-8-2.69-8-6s3.59-6 8-6 8 2.69 8 6-3.59 6-8 6z"/></svg>
+                            今すぐストーリーを始める
+                        </a>
+                        <p class="text-sm text-slate-400 mt-3 ml-4 font-bold">※LINE友だち追加でスタートします</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=1000" alt="スマホでコミュニケーション" class="rounded-[2.5rem] shadow-2xl w-full object-cover h-80 md:h-96">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW CONTENT: 直感ドリーム・チェッカー -->
+    <section id="dream-check" class="py-24 bg-yellow-50 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-black mb-8 text-slate-900 leading-tight">
+                後悔しないために、<br>
+                <span class="text-yellow-600">いまやりたい職業は何？！</span>
+            </h2>
+            <p class="text-xl text-slate-600 mb-12 font-bold">直感で選んでみてください。参加して答えを見つけよう！</p>
+
+            <!-- 職業リスト -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-12 text-sm md:text-base" id="jobList">
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">F1レーサー</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">アイドル</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">YouTuber</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">大工</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">デイトレーダー</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">農業</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">カフェオーナー</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">プロゲーマー</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">旅人</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">俳優</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">宇宙飛行士</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">パン屋さん</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">ITエンジニア</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">デザイナー</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">医師</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">弁護士</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">漫画家</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">声優</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">探偵</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">パイロット</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">発明家</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">政治家</button>
+                <button class="job-btn bg-white border-2 border-slate-200 rounded-xl py-4 px-2 font-bold text-slate-700 hover:border-yellow-400 hover:text-yellow-600" onclick="selectJob(this)">大統領</button>
+                <button class="job-btn special bg-white border-2 rounded-xl py-4 px-2 font-bold hover:bg-purple-50 transition" onclick="selectJob(this)">この一覧にはない</button>
+            </div>
+
+            <!-- アクションボタン -->
+            <div class="text-center mb-10">
+                <button onclick="showResult()" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-black text-2xl py-5 px-16 rounded-full shadow-xl transform transition hover:scale-105 hover:shadow-2xl">
+                    絶対やる！
+                </button>
+            </div>
+
+            <!-- 結果表示エリア (通常) -->
+            <div id="resultArea" class="result-box bg-white p-10 rounded-[2rem] shadow-2xl border-4 border-yellow-400 mx-auto max-w-3xl">
+                <h3 class="text-5xl md:text-7xl font-black text-red-500 mb-6 drop-shadow-md">大正解！</h3>
+                <div class="text-xl md:text-2xl font-bold text-slate-700 space-y-4 leading-relaxed mb-10">
+                    <p>いまやらないと人生輝かない！</p>
+                    <p>やろう！ときめいた今！</p>
+                    <p>さあ、仕事探そう・・・</p>
+                    <p class="text-3xl text-blue-600 pt-4">それが<span class="border-b-4 border-yellow-400">自分流元祖</span>。</p>
+                </div>
+                <a href="#recruit" class="inline-block bg-blue-600 text-white font-black px-10 py-4 rounded-full text-xl hover:bg-blue-700 transition shadow-lg">
+                    常笑で未来を作る
+                </a>
+            </div>
+
+            <!-- 結果表示エリア (最強伝説) -->
+            <div id="resultAreaSpecial" class="result-box bg-gradient-to-br from-purple-900 to-blue-900 p-10 rounded-[2rem] shadow-2xl border-4 border-purple-400 mx-auto max-w-3xl">
+                <h3 class="text-5xl md:text-7xl font-black text-yellow-300 mb-6 drop-shadow-md">最強伝説</h3>
+                <div class="text-xl md:text-2xl font-bold text-white space-y-6 leading-relaxed mb-10">
+                    <p>あなたは・・<br><span class="text-4xl text-purple-200">一番すごい人です。</span></p>
+                    <p>既存の枠には収まらない。<br>誰も歩いたことのない道を行く人。</p>
+                    <p class="text-3xl text-yellow-300 pt-4 animate-pulse">さぁ！旅に出よう！転職だ！</p>
+                </div>
+                <a href="#recruit" class="inline-block bg-white text-purple-900 font-black px-12 py-5 rounded-full text-xl hover:bg-purple-100 transition shadow-lg transform hover:scale-105">
+                    伝説を始める
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 世阿弥 花の理論 -->
+    <section id="zeami" class="py-24 flower-gradient relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 opacity-20 rounded-full blur-3xl"></div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-20">
+                <span class="inline-block py-1 px-4 border border-blue-800 rounded-full text-blue-900 text-sm font-bold mb-4 tracking-widest">ZEAMI'S THEORY</span>
+                <h2 class="text-4xl md:text-6xl font-black mb-6 text-slate-900">人生が輝く「花の理論」</h2>
+                <p class="text-xl text-slate-700 font-bold leading-relaxed max-w-3xl mx-auto">
+                    能の大成者・世阿弥は言いました。<br>
+                    「時分の花（若さゆえの一時的な魅力）」はいずれ散る。<br>
+                    しかし、研鑽の末に咲く「まことの花」は散ることはない、と。
+                </p>
+                <p class="mt-6 text-slate-600">
+                    人生とは何か？ それは、あなただけの「花」を咲かせ続ける旅です。<br>
+                    常笑は、世代ごとに異なる輝き方を大切にしています。
+                </p>
+            </div>
+
+            <!-- 世代別 花の理論カード -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 10代-20代 -->
+                <div class="zeami-card p-8 rounded-[2.5rem] shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+                    <div class="text-5xl mb-6">🌱</div>
+                    <h3 class="text-2xl font-black text-blue-900 mb-2">10代・20代</h3>
+                    <p class="text-sm font-bold text-blue-500 mb-6 tracking-widest">時分の花・種まきの時期</p>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-lg border-b border-blue-200 pb-2">「恐れずに種を蒔く」</h4>
+                        <p class="text-slate-700 leading-relaxed text-sm">
+                            若さという勢い（時分の花）があるうちに、失敗を恐れず様々な経験という種を蒔きましょう。<br>
+                            自分には何ができるのか？ 何が好きなのか？<br>
+                            泥臭くてもいい。その経験が、将来の大樹を支える太い根となります。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 30代-40代 -->
+                <div class="zeami-card p-8 rounded-[2.5rem] shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-blue-500"></div>
+                    <div class="text-5xl mb-6">🌿</div>
+                    <h3 class="text-2xl font-black text-blue-900 mb-2">30代・40代</h3>
+                    <p class="text-sm font-bold text-blue-500 mb-6 tracking-widest">枝葉を広げる・確立の時期</p>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-lg border-b border-blue-200 pb-2">「住する所なきを、まず花と知るべし」</h4>
+                        <p class="text-slate-700 leading-relaxed text-sm">
+                            世阿弥の言葉通り、一箇所に安住せず、変化し続けることこそが魅力です。<br>
+                            キャリアの枝葉を広げ、自分のスタイル（型）を確立する時期。<br>
+                            「誰かのため」に働く喜びを知り、信頼という幹を太くしていきましょう。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 50代-60代 -->
+                <div class="zeami-card p-8 rounded-[2.5rem] shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+                    <div class="text-5xl mb-6">🌸</div>
+                    <h3 class="text-2xl font-black text-blue-900 mb-2">50代・60代〜</h3>
+                    <p class="text-sm font-bold text-blue-500 mb-6 tracking-widest">まことの花・結実の時期</p>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-lg border-b border-blue-200 pb-2">「老いてなお、花となる」</h4>
+                        <p class="text-slate-700 leading-relaxed text-sm">
+                            若さの花は散りましたが、代わりに咲くのが「まことの花」。<br>
+                            蓄積された知恵、滲み出る人間力、そして何より「人生を楽しむ余裕」。<br>
+                            決して枯れることのない、あなただけの究極の「自分流元祖」がここに完成します。
+                        </p>
                     </div>
                 </div>
             </div>
+
+            <div class="mt-16 text-center">
+                <p class="text-xl font-bold text-slate-800 mb-8">
+                    あなたは今、どの季節にいますか？<br>
+                    常笑で、その季節にしか咲かない花を咲かせましょう。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7つの視点 -->
+    <section id="philosophy" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-5xl font-black mb-6 text-slate-900">自分流元祖を創る7つの視点</h2>
+                <p class="mt-4 text-slate-600 font-medium text-lg">この7つの視点を持つことで、あなたの人生とキャリアはより強固なものになります。</p>
+            </div>
             
-            <div class="space-y-8">
-                <!-- 10s -->
-                <div class="joy-card flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-lg border-l-8 border-blue-400">
-                    <div class="md:w-1/4 bg-blue-50 p-8 flex flex-col justify-center items-center text-center">
-                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-blue-500 mb-4 shadow-sm">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-black text-blue-400 opacity-50">10s</h3>
-                        <span class="text-sm font-bold text-blue-600 mt-2">発見の喜び</span>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Point 01: 健康管理力 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-lg transition-all group">
+                    <div class="h-40 overflow-hidden rounded-2xl mb-6">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&q=80&w=800" alt="健康" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform">
                     </div>
-                    <div class="p-8 md:w-3/4 flex flex-col justify-center">
-                        <h4 class="text-2xl font-black mb-4 text-slate-800">「自分に何ができるか」を試す冒険</h4>
-                        <p class="text-slate-600 leading-loose mb-4">初めて自分の力でお金を稼ぎ、欲しいものを手に入れる「達成感」。学校や家庭とは違う「大人としての自分」を発見する楽しさです。</p>
-                        <p class="text-blue-600 font-bold italic">「自分にはこんな才能があったんだ」という発見の連続。</p>
-                    </div>
+                    <div class="text-blue-600 font-black text-xl mb-2">01</div>
+                    <h4 class="text-lg font-black mb-3 text-slate-800">健康管理力</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        良い仕事は、良い身体から。自身のコンディションを整えるプロフェッショナルへ。
+                    </p>
                 </div>
-                <!-- 20s -->
-                <div class="joy-card flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-lg border-l-8 border-indigo-500">
-                    <div class="md:w-1/4 bg-indigo-50 p-8 flex flex-col justify-center items-center text-center">
-                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-indigo-500 mb-4 shadow-sm">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-black text-indigo-400 opacity-50">20s</h3>
-                        <span class="text-sm font-bold text-indigo-600 mt-2">成長の喜び</span>
+
+                <!-- Point 02: お金を価値に -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-lg transition-all group">
+                    <div class="h-40 overflow-hidden rounded-2xl mb-6">
+                        <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=800" alt="価値" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform">
                     </div>
-                    <div class="p-8 md:w-3/4 flex flex-col justify-center">
-                        <h4 class="text-2xl font-black mb-4 text-slate-800">「何者にでもなれる自分」を磨く</h4>
-                        <p class="text-slate-600 leading-loose mb-4">昨日までできなかったことが、できるようになる「自己効力感」。プロフェッショナルとしての土台を作り、世界が広がっていくワクワク感です。</p>
-                        <p class="text-indigo-600 font-bold italic">未来の自分への投資。吸収する全てが資産になる喜び。</p>
-                    </div>
+                    <div class="text-blue-600 font-black text-xl mb-2">02</div>
+                    <h4 class="text-lg font-black mb-3 text-slate-800">お金を“価値”に</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        稼いだお金を「経験」や「学び」に投資する賢さを身につけます。
+                    </p>
                 </div>
-                <!-- 30s -->
-                <div class="joy-card flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-lg border-l-8 border-cyan-600">
-                    <div class="md:w-1/4 bg-cyan-50 p-8 flex flex-col justify-center items-center text-center">
-                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-cyan-600 mb-4 shadow-sm">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-black text-cyan-400 opacity-50">30s</h3>
-                        <span class="text-sm font-bold text-cyan-700 mt-2">信頼の喜び</span>
+
+                <!-- Point 03: 身軽な思考力 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-lg transition-all group">
+                    <div class="h-40 overflow-hidden rounded-2xl mb-6">
+                        <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=800" alt="身軽" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform">
                     </div>
-                    <div class="p-8 md:w-3/4 flex flex-col justify-center">
-                        <h4 class="text-2xl font-black mb-4 text-slate-800">「誰かに必要とされる」手応え</h4>
-                        <p class="text-slate-600 leading-loose mb-4">自分の仕事が誰かを助け、「あなたに任せたい」と言われる「信頼の重み」。チームを動かし、より大きな成果を出す「共創」の楽しさ。</p>
-                        <p class="text-cyan-700 font-bold italic">個人の力から組織の力へ。確かな居場所を築く喜び。</p>
-                    </div>
+                    <div class="text-blue-600 font-black text-xl mb-2">03</div>
+                    <h4 class="text-lg font-black mb-3 text-slate-800">身軽な思考力</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        こだわりや執着を捨て、変化に柔軟に対応する「軽やかさ」を養います。
+                    </p>
                 </div>
-                <!-- 40s -->
-                <div class="joy-card flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-lg border-l-8 border-teal-600">
-                    <div class="md:w-1/4 bg-teal-50 p-8 flex flex-col justify-center items-center text-center">
-                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-teal-600 mb-4 shadow-sm">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-black text-teal-400 opacity-50">40s</h3>
-                        <span class="text-sm font-bold text-teal-700 mt-2">影響の喜び</span>
+
+                <!-- Point 04: 人間関係構築力 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-lg transition-all group">
+                    <div class="h-40 overflow-hidden rounded-2xl mb-6">
+                        <img src="02.jpg" alt="人間関係" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform">
                     </div>
-                    <div class="p-8 md:w-3/4 flex flex-col justify-center">
-                        <h4 class="text-2xl font-black mb-4 text-slate-800">「仕組みを創り、次を育てる」充足感</h4>
-                        <p class="text-slate-600 leading-loose mb-4">自分の意思が、組織や社会の仕組みを動かしているという「実感」。また、後輩が育っていく姿を見る「継承」の喜びです。</p>
-                        <p class="text-teal-700 font-bold italic">自分の仕事が「誰かの道」になる。ポジティブな変化を生む喜び。</p>
-                    </div>
+                    <div class="text-blue-600 font-black text-xl mb-2">04</div>
+                    <h4 class="text-lg font-black mb-3 text-slate-800">人間関係構築力</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        表面的な付き合いではなく、心を通わせる信頼関係を築きます。
+                    </p>
                 </div>
-                <!-- 50s -->
-                <div class="joy-card flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-lg border-l-8 border-amber-500 scale-100 ring-0 z-10">
-                    <div class="md:w-1/4 bg-amber-50 p-8 flex flex-col justify-center items-center text-center">
-                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-amber-500 mb-4 shadow-sm">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-black text-amber-400 opacity-50">50s</h3>
-                        <span class="text-sm font-bold text-amber-700 mt-2">円熟の喜び</span>
+
+                <!-- Point 05: 立ち止まる勇気 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-lg transition-all group">
+                    <div class="h-40 overflow-hidden rounded-2xl mb-6">
+                        <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&q=80&w=800" alt="内省" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform">
                     </div>
-                    <div class="p-8 md:w-3/4 flex flex-col justify-center relative">
-                        <h4 class="text-2xl font-black mb-4 text-slate-800">「自分らしさ」と「社会貢献」の統合</h4>
-                        <p class="text-slate-600 leading-loose mb-4">これまでの経験を活かし、複雑な問題を解決する「知恵の出力」。損得を超えて、「本当に社会に必要なこと」に情熱を注ぐ喜びです。</p>
-                        <p class="text-amber-600 font-bold italic">キャリアの集大成。自分だけの「価値」を社会に提供する時。</p>
-                    </div>
+                    <div class="text-blue-600 font-black text-xl mb-2">05</div>
+                    <h4 class="text-lg font-black mb-3 text-slate-800">立ち止まる勇気</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        定期的にキャリアを見つめ直し、正しい方向へ修正する「内省」の習慣を。
+                    </p>
                 </div>
-                <!-- 60s -->
-                <div class="joy-card flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-lg border-l-8 border-orange-500">
-                    <div class="md:w-1/4 bg-orange-50 p-8 flex flex-col justify-center items-center text-center">
-                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-orange-500 mb-4 shadow-sm">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-black text-orange-400 opacity-50">60s</h3>
-                        <span class="text-sm font-bold text-orange-700 mt-2">接続の喜び</span>
+
+                <!-- Point 06: 失敗を糧にする力 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-lg transition-all group">
+                    <div class="h-40 overflow-hidden rounded-2xl mb-6">
+                        <img src="https://images.unsplash.com/photo-1519834785169-98be25ec3f84?auto=format&fit=crop&q=80&w=800" alt="挑戦" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform">
                     </div>
-                    <div class="p-8 md:w-3/4 flex flex-col justify-center">
-                        <h4 class="text-2xl font-black mb-4 text-slate-800">「自由な意志」で社会と繋がり続ける</h4>
-                        <p class="text-slate-600 leading-loose mb-4">「義務」から解放され、純粋に「好きだから」働くという「自由」。社会から切り離されず、生涯現役でいられる安心感です。</p>
-                        <p class="text-orange-600 font-bold italic">後進への希望。軽やかに、しかし確かに社会と繋がる喜び。</p>
+                    <div class="text-blue-600 font-black text-xl mb-2">06</div>
+                    <h4 class="text-lg font-black mb-3 text-slate-800">失敗を糧にする力</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        失敗を「成長のデータ」と捉え、ポジティブに次の一歩を踏み出す強さを。
+                    </p>
+                </div>
+
+                <!-- Point 07: 自分らしく生きる -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-lg transition-all group md:col-span-2 flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-full md:w-1/2 h-48 overflow-hidden rounded-2xl">
+                        <img src="1.jpg" alt="自分らしく" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform">
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div class="text-blue-600 font-black text-xl mb-2">07</div>
+                        <h4 class="text-2xl font-black mb-4 text-blue-600 underline decoration-4 underline-offset-8">自分らしく生きる</h4>
+                        <p class="text-slate-700 font-bold leading-relaxed">
+                            他人と比べず、自分の価値観で働く。<br>
+                            人生の主役は常に「自分」です。<br>
+                            常笑は全力であなたをマッチングします。
+                        </p>
                     </div>
                 </div>
             </div>
@@ -386,7 +532,6 @@
     <!-- NEW SECTION: 常笑との出会い -->
     <section id="miracle" class="py-24 bg-indigo-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-20">
-            <!-- 背景に森や自然のイメージ -->
             <div class="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1448375240586-dfd8d395ea6c?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center mix-blend-overlay"></div>
         </div>
 
@@ -401,33 +546,28 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Point 1 -->
                 <div class="bg-white/10 backdrop-blur-md p-10 rounded-3xl border border-white/20 hover:bg-white/20 transition-all shadow-lg">
                     <div class="flex items-start gap-5">
                         <div class="text-5xl filter drop-shadow-md">🌿</div>
                         <div>
-                            <h3 class="text-2xl font-bold mb-4 text-white">1. 自分らしくいられる場所かどうか</h3>
+                            <h3 class="text-2xl font-bold mb-4 text-white">1. 自分らしくいられる場所</h3>
                             <p class="text-indigo-100 leading-loose font-medium">
                                 都会の喧騒も面白いけど、やっぱり自然の中でのびのびできるのが好き。だから、自由な発想や個性を大切にしてくれる会社がいいな。
                             </p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Point 2 -->
                 <div class="bg-white/10 backdrop-blur-md p-10 rounded-3xl border border-white/20 hover:bg-white/20 transition-all shadow-lg">
                     <div class="flex items-start gap-5">
                         <div class="text-5xl filter drop-shadow-md">🔍</div>
                         <div>
-                            <h3 class="text-2xl font-bold mb-4 text-white">2. 何のために働いているのかが見えること</h3>
+                            <h3 class="text-2xl font-bold mb-4 text-white">2. 働く意味が見えること</h3>
                             <p class="text-indigo-100 leading-loose font-medium">
                                 「この仕事は誰の役に立ってるのか？」っていうのが見えると、やりがいを感じられるんだ。森の中で道案内するみたいにね。
                             </p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Point 3 -->
                 <div class="bg-white/10 backdrop-blur-md p-10 rounded-3xl border border-white/20 hover:bg-white/20 transition-all shadow-lg">
                     <div class="flex items-start gap-5">
                         <div class="text-5xl filter drop-shadow-md">🧭</div>
@@ -439,8 +579,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Point 4 -->
                 <div class="bg-white/10 backdrop-blur-md p-10 rounded-3xl border border-white/20 hover:bg-white/20 transition-all shadow-lg">
                     <div class="flex items-start gap-5">
                         <div class="text-5xl filter drop-shadow-md">🌱</div>
@@ -478,8 +616,7 @@
                 <!-- エンターテインメント・イベント事業 -->
                 <div class="group">
                     <div class="h-64 overflow-hidden rounded-[2rem] shadow-lg mb-6 relative group-hover:-translate-y-2 transition-transform duration-300">
-                         <!-- 画像: コンサート・舞台裏のイメージ -->
-                         <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=800" alt="エンターテインメントの現場" class="w-full h-full object-cover">
+                         <img src="01.jpg" alt="エンターテインメントの現場" class="w-full h-full object-cover">
                          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
                             <span class="text-white font-black text-xl tracking-wide">Entertainment & Event</span>
                          </div>
@@ -497,8 +634,7 @@
                 <!-- 人材派遣・紹介事業 -->
                 <div class="group">
                     <div class="h-64 overflow-hidden rounded-[2rem] shadow-lg mb-6 relative group-hover:-translate-y-2 transition-transform duration-300">
-                         <!-- 画像: 人材派遣・ビジネス -->
-                         <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800" alt="人材派遣・オフィス" class="w-full h-full object-cover">
+                         <img src="03.jpg" alt="人材派遣・オフィス" class="w-full h-full object-cover">
                          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
                             <span class="text-white font-black text-xl tracking-wide">HR & Career</span>
                          </div>
@@ -516,8 +652,7 @@
                 <!-- 飲食・レジャー・施設運営 -->
                 <div class="group">
                     <div class="h-64 overflow-hidden rounded-[2rem] shadow-lg mb-6 relative group-hover:-translate-y-2 transition-transform duration-300">
-                         <!-- 画像: キャンプ・自然 -->
-                         <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=800" alt="キャンプ場・自然" class="w-full h-full object-cover">
+                         <img src="2.jpg" alt="レジャー・施設" class="w-full h-full object-cover">
                          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
                             <span class="text-white font-black text-xl tracking-wide">Lifestyle & Nature</span>
                          </div>
@@ -532,40 +667,27 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 注釈 -->
-            <div class="mt-16 text-center bg-blue-50 p-10 rounded-[2rem] border border-blue-100">
-                <p class="text-2xl md:text-3xl font-black text-blue-900 mb-6 leading-relaxed">
-                    多様な事業展開で、<br class="md:hidden">
-                    <span class="text-blue-600">あなたの可能性を広げます。</span>
-                </p>
-                <p class="text-slate-600 font-medium text-lg leading-loose">希望の職種や働き方について、まずはお気軽にご相談ください。</p>
-            </div>
         </div>
     </section>
 
     <!-- 採用情報 (RECRUIT) -->
-    <section id="recruit" class="py-24 recruit-bg text-white overflow-hidden relative">
+    <section id="recruit" class="py-24 bg-blue-600 text-white overflow-hidden relative">
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-3/5">
                     <div class="mb-12">
-                        <span class="text-sky-300 font-black tracking-[0.3em] uppercase text-sm">Recruitment Message</span>
+                        <span class="text-blue-200 font-black tracking-[0.3em] uppercase text-sm">Recruitment Message</span>
                         <h2 class="text-4xl md:text-6xl font-black mt-4 leading-tight">
                             あなたの“普通”は、<br class="md:hidden">誰かの“特別”だ。<br>
-                            <span class="text-sky-300">ここで、個性を武器にしよう。</span>
+                            <span class="text-yellow-400">ここで、個性を武器にしよう。</span>
                         </h2>
                     </div>
 
                     <div class="bg-white/10 backdrop-blur-xl p-10 md:p-14 rounded-[3rem] border border-white/20 shadow-2xl">
                         <div class="space-y-8 text-xl md:text-2xl leading-relaxed">
                             <p class="font-medium">
-                                「仕事とは、自分を押し殺して、<br class="hidden md:block">誰かが決めた枠に収まることだ」<br><br>
-                                もしあなたがそう思っているなら、<br>私たちの扉を叩いてほしい。
-                            </p>
-                            <p>
                                 私たちは、あなたのスキルだけでなく、<br>
-                                <span class="text-white font-black underline decoration-sky-400 decoration-8 underline-offset-8">「あなたという人間そのもの」</span><br>
+                                <span class="text-white font-black underline decoration-yellow-400 decoration-8 underline-offset-8">「あなたという人間そのもの」</span><br>
                                 に期待しています。
                             </p>
                             <p class="text-3xl md:text-5xl font-black text-white mt-12 text-center leading-tight">
@@ -576,8 +698,7 @@
                 </div>
                 <div class="lg:w-2/5">
                     <div class="grid grid-cols-1 gap-8">
-                        <!-- 日本人の若者・元気な笑顔 (Recruit) -->
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000" alt="明るく元気な日本人の若者" class="rounded-[4rem] shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <img src="1.jpg" alt="自分らしく働く" class="rounded-[4rem] shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500 border-8 border-white/20">
                     </div>
                 </div>
             </div>
@@ -589,7 +710,7 @@
         <div class="max-w-5xl mx-auto px-4">
             <h2 class="text-4xl md:text-5xl font-black text-center mb-16 relative text-slate-900">会社概要</h2>
             
-            <div class="bg-white border-2 border-blue-50 rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-900/5">
+            <div class="bg-white border-2 border-blue-50 rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-900/5 mb-16">
                 <div class="grid grid-cols-1 md:grid-cols-3 border-b border-blue-50">
                     <div class="bg-blue-50/50 p-8 font-black text-blue-900 uppercase text-xs tracking-[0.3em] flex items-center">Company Name</div>
                     <div class="p-8 md:col-span-2 text-2xl font-black italic text-slate-800">株式会社 常笑</div>
@@ -636,34 +757,33 @@
     </section>
 
     <!-- お問い合わせ -->
-    <section id="contact" class="py-24 bg-blue-600 text-white text-center">
+    <section id="contact" class="py-24 bg-slate-50 text-center">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight text-shadow">さあ 一緒に<br class="md:hidden">「常勝軍団」へ</h2>
-            <p class="text-2xl text-blue-100 mb-12 font-medium italic">Your "Best Run-up Period" Starts Here.</p>
+            <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight text-slate-900">お問い合わせ・相談</h2>
+            <p class="text-2xl text-blue-600 mb-12 font-medium italic">Contact Us</p>
             
-            <div class="bg-white p-10 md:p-20 rounded-[4rem] shadow-2xl text-left text-gray-900">
+            <div class="bg-white p-10 md:p-20 rounded-[4rem] shadow-2xl text-left text-gray-900 border-4 border-blue-100">
                 <form class="grid grid-cols-1 gap-10">
-                    <h3 class="text-3xl font-black text-blue-700 text-center mb-6">簡単Webエントリー / お問い合わせ</h3>
                     <div class="text-center mb-8">
-                        <p class="text-lg font-bold text-slate-600">お電話でのお問い合わせもお気軽にどうぞ</p>
-                        <p class="text-3xl font-black text-blue-600 mt-2">050-6861-4638</p>
+                        <p class="text-lg font-bold text-slate-600">お電話でのお問い合わせ</p>
+                        <a href="tel:05068614638" class="text-4xl font-black text-blue-600 mt-2 hover:text-blue-800 transition block">050-6861-4638</a>
                     </div>
                     <div class="grid md:grid-cols-2 gap-10">
                         <div>
                             <label class="block text-sm font-black mb-3 ml-1 text-blue-600 uppercase tracking-widest">Name</label>
-                            <input type="text" class="w-full px-8 py-5 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-blue-600 focus:bg-white outline-none transition-all text-lg" placeholder="常笑 太郎">
+                            <input type="text" class="w-full px-8 py-5 rounded-2xl bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white outline-none transition-all text-lg" placeholder="常笑 太郎">
                         </div>
                         <div>
                             <label class="block text-sm font-black mb-3 ml-1 text-blue-600 uppercase tracking-widest">Email Address</label>
-                            <input type="email" class="w-full px-8 py-5 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-blue-600 focus:bg-white outline-none transition-all text-lg" placeholder="info@jyoushou.com">
+                            <input type="email" class="w-full px-8 py-5 rounded-2xl bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white outline-none transition-all text-lg" placeholder="info@jyoushou.com">
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-black mb-3 ml-1 text-blue-600 uppercase tracking-widest">Message</label>
-                        <textarea class="w-full px-8 py-5 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-blue-600 focus:bg-white outline-none transition-all h-48 text-lg" placeholder="まずは話を聞いてみたい、登録したい、などお気軽にどうぞ"></textarea>
+                        <textarea class="w-full px-8 py-5 rounded-2xl bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white outline-none transition-all h-48 text-lg" placeholder="まずは話を聞いてみたい、登録したい、などお気軽にどうぞ"></textarea>
                     </div>
-                    <button type="button" class="bg-blue-600 text-white font-black py-6 rounded-2xl hover:bg-blue-700 transition shadow-xl shadow-blue-200 text-2xl uppercase tracking-[0.2em] transform hover:scale-[1.02] w-full md:w-auto md:px-20 mx-auto block">
-                        話を聞いてみる
+                    <button type="button" class="bg-blue-600 text-white font-black py-6 rounded-2xl hover:bg-blue-700 transition shadow-xl shadow-blue-200 text-2xl uppercase tracking-[0.2em] transform hover:scale-[1.02] w-full md:w-auto md:px-24 mx-auto block">
+                        送信する
                     </button>
                 </form>
             </div>
@@ -673,15 +793,72 @@
     <!-- フッター -->
     <footer class="bg-slate-900 text-slate-400 py-20 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="mb-8 flex justify-center">
+                <img src="rogo.png" alt="株式会社常笑 ロゴ" class="h-16 w-auto object-contain brightness-0 invert">
+            </div>
             <div class="text-3xl font-black text-white mb-6 tracking-tighter italic">株式会社 常笑</div>
             <p class="text-lg mb-4">〒160-0023 東京都新宿区西新宿三丁目3番13号 西新宿水間ビル6階</p>
             <p class="text-xl font-black text-blue-400 mb-12 uppercase tracking-widest">jyoushou.com</p>
             
+            <div class="flex justify-center gap-6 mb-12 text-sm font-medium">
+                <a href="#" class="hover:text-white transition">プライバシーポリシー</a>
+                <a href="#" class="hover:text-white transition">特定商取引法に基づく表記</a>
+                <a href="#contact" class="hover:text-white transition">お問い合わせ</a>
+            </div>
+
             <div class="border-t border-slate-800 pt-10 text-xs tracking-widest opacity-50 font-bold">
                 &copy; 2026 株式会社 常笑 WE ARE THE WINNING TEAM.
             </div>
         </div>
     </footer>
+
+    <!-- JavaScript for Interactive Content -->
+    <script>
+        function selectJob(btn) {
+            // 他の選択をリセット
+            const buttons = document.querySelectorAll('.job-btn');
+            buttons.forEach(b => {
+                b.classList.remove('selected');
+                if (b.classList.contains('special')) {
+                    // 特別なボタンのスタイルリセット
+                } else {
+                    b.classList.remove('bg-blue-500', 'text-white', 'border-blue-500');
+                }
+            });
+            
+            // 選択状態にする
+            btn.classList.add('selected');
+            if (!btn.classList.contains('special')) {
+                btn.classList.add('bg-blue-500', 'text-white', 'border-blue-500');
+            }
+        }
+
+        function showResult() {
+            // 選択されているかチェック
+            const selected = document.querySelector('.job-btn.selected');
+            if (!selected) {
+                alert('まずは直感で職業を選んでみてください！');
+                return;
+            }
+
+            // 結果エリアを隠す（リセット）
+            document.getElementById('resultArea').classList.remove('show');
+            document.getElementById('resultAreaSpecial').classList.remove('show');
+
+            // 選択によって分岐
+            if (selected.classList.contains('special')) {
+                // 最強伝説ルート
+                const resultArea = document.getElementById('resultAreaSpecial');
+                resultArea.classList.add('show');
+                resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                // 通常ルート
+                const resultArea = document.getElementById('resultArea');
+                resultArea.classList.add('show');
+                resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    </script>
 
 </body>
 </html>
